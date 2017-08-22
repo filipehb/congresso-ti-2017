@@ -2,11 +2,15 @@ package core;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.GeckoDriverService;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static java.lang.System.getProperties;
 
 final class SingletonDriver {
     private static WebDriver driver;
@@ -22,7 +26,6 @@ final class SingletonDriver {
             }
 
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-            driver.manage().window().maximize();
         }
 
         return driver;
@@ -45,17 +48,7 @@ final class SingletonDriver {
     }
 
     private static WebDriver createFirefoxDriver() {
-        System.setProperty(GeckoDriverService.GECKO_DRIVER_EXE_PROPERTY, "LOCALDODRIVER");
-
-        /*FirefoxProfile profile = new FirefoxProfile();
-        profile.setAcceptUntrustedCertificates(true);
-        profile.setPreference("security.insecure_field_warning.contextual.enabled", false);
-        profile.setPreference("intl.accept_languages", "en-US");
-
-        FirefoxOptions options = new FirefoxOptions();
-        options.setBinary(getProperties().getBrowserBinary());
-        options.setProfile(profile);*/
-
+        System.setProperty(GeckoDriverService.GECKO_DRIVER_EXE_PROPERTY, "caminho do geckodriver");
         return new FirefoxDriver();
     }
 }
